@@ -21,10 +21,13 @@ RewriteRule ^baumschnitt/?$ /leistungen.html#baumschnitt [R=301,L,NE]
 # Kaminholz wird nicht mehr angeboten → auf Schwerpunkt Baumschnitt leiten:
 RewriteRule ^kaminholz(-lieferservice)?/?$ /leistungen.html#baumschnitt [R=301,L,NE]
 RewriteRule ^brennholz/?$ /leistungen.html#baumschnitt [R=301,L,NE]
-RewriteRule ^hausmeister(service)?/?$ /leistungen.html#hausmeister [R=301,L,NE]
-RewriteRule ^bau(-nebenleistungen|leistungen)?/?$ /leistungen.html#bauleistungen [R=301,L,NE]
-RewriteRule ^gartenmoebel-und-spielgeraete-aus-holz/?$ /leistungen.html#gartenmoebel [R=301,L,NE]
-RewriteRule ^kreatives-aus-und-mit-holz/?$ /leistungen.html#kreatives [R=301,L,NE]
+# Fokus 2026-10: Hausmeister/Bau/Grab entfallen → Schwerpunkt Baumschnitt/Baumpflege.
+# (Anker #... werden vom Browser nicht an den Server gesendet – sie wirken nur clientseitig.)
+RewriteRule ^hausmeister(service)?/?$ /leistungen.html#baumschnitt [R=301,L,NE]
+RewriteRule ^bau(-nebenleistungen|leistungen)?/?$ /leistungen.html#baumschnitt [R=301,L,NE]
+RewriteRule ^grabpflege/?$ /leistungen.html#baumschnitt [R=301,L,NE]
+RewriteRule ^gartenmoebel-und-spielgeraete-aus-holz/?$ /leistungen.html#holzgestaltung [R=301,L,NE]
+RewriteRule ^kreatives-aus-und-mit-holz/?$ /leistungen.html#holzgestaltung [R=301,L,NE]
 RewriteRule ^referenzobjekte/?$ /galerie.html [R=301,L]
 RewriteRule ^unser-team/?$ /galerie.html [R=301,L]
 RewriteRule ^team\.html?$ /galerie.html [R=301,L]
