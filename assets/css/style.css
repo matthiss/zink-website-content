@@ -177,19 +177,20 @@ a.photo-card .photo-body p{color:#eef3ec}
    Karten-Prominenz (Motive problemfaellung-feld, hubsteiger-02, bank-rustikal,
    min-height, Glas-Body) bleibt erhalten. */
 #leistungen .photo-grid{gap:1.8rem}
-#leistungen .photo-card{min-height:480px;align-items:stretch}
-#leistungen .photo-card>img{filter:blur(1px) brightness(.92)}
-#leistungen .photo-body{margin:1.2rem;margin-top:auto;align-self:flex-end;width:auto;
-  background:rgba(247,243,235,.55);border:1px solid rgba(255,255,255,.6);
-  backdrop-filter:blur(14px) saturate(1.25);-webkit-backdrop-filter:blur(14px) saturate(1.25);
-  border-radius:16px;padding:2rem;box-shadow:0 12px 32px rgba(21,42,27,.18)}
-#leistungen .photo-body h3{color:var(--green-950);font-size:1.35rem;text-shadow:none}
-#leistungen .photo-body p{color:#3f4539;font-size:1.08rem;text-shadow:none}
+#leistungen .photo-card{min-height:520px;align-items:stretch}
+#leistungen .photo-card>img{filter:blur(1px) brightness(.92);object-position:top center}
+#leistungen .photo-body{margin:1.2rem;margin-top:auto;align-self:end;width:auto;
+  max-height:46%;overflow:hidden;
+  background:rgba(247,243,235,.42);border:1px solid rgba(255,255,255,.6);
+  backdrop-filter:blur(10px) saturate(1.25);-webkit-backdrop-filter:blur(10px) saturate(1.25);
+  border-radius:16px;padding:1.2rem;box-shadow:0 12px 32px rgba(21,42,27,.18)}
+#leistungen .photo-body h3{color:var(--green-950);font-size:1.2rem;text-shadow:none}
+#leistungen .photo-body p{color:#3f4539;font-size:.95rem;text-shadow:none}
 #leistungen .photo-body .more{color:var(--green-900)}
 #leistungen .chip-glass{background:rgba(21,42,27,.6);border-color:rgba(255,255,255,.5);color:#fff}
 @media(max-width:900px){
   #leistungen .photo-card{min-height:420px}
-  #leistungen .photo-body{margin:.9rem;padding:1.5rem}
+  #leistungen .photo-body{margin:.9rem;padding:1.2rem;max-height:55%}
 }
 /* ---------- Foto-Band: Section mit Bildhintergrund + Glas-Cards (Kontakt-Look, Maßstab) ----------
    Einheitliches Overlay-System, Referenz kontakt.html .photo-band:
