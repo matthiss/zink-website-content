@@ -171,6 +171,34 @@ a.photo-card .photo-body p{color:#eef3ec}
   backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
   border-radius:999px;padding:.3rem .9rem;font-size:.78rem;font-weight:800;
   letter-spacing:.05em;text-transform:uppercase;color:#fff}
+/* ---------- Start-Leistungen (id=leistungen): Foto-Section-Background + große Glas-Cards ----------
+   User-Feedback 2026-10-04: kein Weiß als Fläche (nur als .82→.88-Overlay),
+   Cards größer/prominenter, Creme-Glas statt hartem Dark-Overlay. */
+.leistungen-foto{position:relative;isolation:isolate;overflow:hidden}
+.leistungen-foto::before{content:"";position:absolute;inset:0;z-index:-2;
+  background:url(../img/hero-hubsteiger-herbst.webp) center/cover no-repeat fixed;
+  opacity:.16}
+.leistungen-foto::after{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(to bottom,rgba(255,255,255,.82),rgba(255,255,255,.88))}
+.leistungen-foto .wrap{position:relative;z-index:1}
+.leistungen-foto .photo-grid{gap:1.8rem}
+.leistungen-foto .photo-card{min-height:480px;align-items:stretch}
+.leistungen-foto .photo-card>img{filter:blur(1px) brightness(.92)}
+.leistungen-foto .photo-card::after{
+  background:linear-gradient(to top,rgba(250,248,242,.5),rgba(250,248,242,.18) 55%,transparent 80%)}
+.leistungen-foto .photo-body{margin:1.2rem;margin-top:auto;align-self:flex-end;width:auto;
+  background:rgba(247,243,235,.55);border:1px solid rgba(255,255,255,.6);
+  backdrop-filter:blur(14px) saturate(1.25);-webkit-backdrop-filter:blur(14px) saturate(1.25);
+  border-radius:16px;padding:2rem;box-shadow:0 12px 32px rgba(21,42,27,.18)}
+.leistungen-foto .photo-body h3{color:var(--green-950);font-size:1.35rem;text-shadow:none}
+.leistungen-foto .photo-body p{color:#3f4539;font-size:1.08rem;text-shadow:none}
+.leistungen-foto .photo-body .more{color:var(--green-900)}
+.leistungen-foto .chip-glass{background:rgba(21,42,27,.6);border-color:rgba(255,255,255,.5);color:#fff}
+@media(max-width:900px){
+  .leistungen-foto::before{background-attachment:scroll}
+  .leistungen-foto .photo-card{min-height:420px}
+  .leistungen-foto .photo-body{margin:.9rem;padding:1.5rem}
+}
 /* ---------- Foto-Band: Section mit Bildhintergrund + Glas-Cards ---------- */
 .photo-band{position:relative;isolation:isolate;color:#fff;overflow:hidden;border-radius:28px;margin:0 .6rem}
 .photo-band .band-bg{position:absolute;inset:0;z-index:-2}
