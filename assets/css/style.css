@@ -171,46 +171,61 @@ a.photo-card .photo-body p{color:#eef3ec}
   backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
   border-radius:999px;padding:.3rem .9rem;font-size:.78rem;font-weight:800;
   letter-spacing:.05em;text-transform:uppercase;color:#fff}
-/* ---------- Start-Leistungen (id=leistungen): Foto-Section-Background + große Glas-Cards ----------
-   User-Feedback 2026-10-04: kein Weiß als Fläche (nur als .82→.88-Overlay),
-   Cards größer/prominenter, Creme-Glas statt hartem Dark-Overlay. */
-.leistungen-foto{position:relative;isolation:isolate;overflow:hidden}
-.leistungen-foto::before{content:"";position:absolute;inset:0;z-index:-2;
-  background:url(../img/hero-hubsteiger-herbst.webp) center/cover no-repeat fixed;
-  opacity:.16}
-.leistungen-foto::after{content:"";position:absolute;inset:0;z-index:-1;
-  background:linear-gradient(to bottom,rgba(255,255,255,.82),rgba(255,255,255,.88))}
-.leistungen-foto .wrap{position:relative;z-index:1}
-.leistungen-foto .photo-grid{gap:1.8rem}
-.leistungen-foto .photo-card{min-height:480px;align-items:stretch}
-.leistungen-foto .photo-card>img{filter:blur(1px) brightness(.92)}
-.leistungen-foto .photo-card::after{
-  background:linear-gradient(to top,rgba(250,248,242,.5),rgba(250,248,242,.18) 55%,transparent 80%)}
-.leistungen-foto .photo-body{margin:1.2rem;margin-top:auto;align-self:flex-end;width:auto;
+/* ---------- Start-Leistungen (id=leistungen): Fullscreen-Prinzip im Kontakt-Look ----------
+   Revert 2026-10-04 (ac8ae21 war falsch: nur Kachel-Weiß statt Fullscreen):
+   kein Weiß-Overlay mehr; Section nutzt .photo-band (dunkles Overlay + Glas-Cards).
+   Karten-Prominenz (Motive problemfaellung-feld, hubsteiger-02, bank-rustikal,
+   min-height, Glas-Body) bleibt erhalten. */
+#leistungen .photo-grid{gap:1.8rem}
+#leistungen .photo-card{min-height:480px;align-items:stretch}
+#leistungen .photo-card>img{filter:blur(1px) brightness(.92)}
+#leistungen .photo-body{margin:1.2rem;margin-top:auto;align-self:flex-end;width:auto;
   background:rgba(247,243,235,.55);border:1px solid rgba(255,255,255,.6);
   backdrop-filter:blur(14px) saturate(1.25);-webkit-backdrop-filter:blur(14px) saturate(1.25);
   border-radius:16px;padding:2rem;box-shadow:0 12px 32px rgba(21,42,27,.18)}
-.leistungen-foto .photo-body h3{color:var(--green-950);font-size:1.35rem;text-shadow:none}
-.leistungen-foto .photo-body p{color:#3f4539;font-size:1.08rem;text-shadow:none}
-.leistungen-foto .photo-body .more{color:var(--green-900)}
-.leistungen-foto .chip-glass{background:rgba(21,42,27,.6);border-color:rgba(255,255,255,.5);color:#fff}
+#leistungen .photo-body h3{color:var(--green-950);font-size:1.35rem;text-shadow:none}
+#leistungen .photo-body p{color:#3f4539;font-size:1.08rem;text-shadow:none}
+#leistungen .photo-body .more{color:var(--green-900)}
+#leistungen .chip-glass{background:rgba(21,42,27,.6);border-color:rgba(255,255,255,.5);color:#fff}
 @media(max-width:900px){
-  .leistungen-foto::before{background-attachment:scroll}
-  .leistungen-foto .photo-card{min-height:420px}
-  .leistungen-foto .photo-body{margin:.9rem;padding:1.5rem}
+  #leistungen .photo-card{min-height:420px}
+  #leistungen .photo-body{margin:.9rem;padding:1.5rem}
 }
-/* ---------- Foto-Band: Section mit Bildhintergrund + Glas-Cards ---------- */
+/* ---------- Foto-Band: Section mit Bildhintergrund + Glas-Cards (Kontakt-Look, Maßstab) ----------
+   Einheitliches Overlay-System, Referenz kontakt.html .photo-band:
+   - band-bg img: cover, blur(4px) + brightness(.9), scale(1.06) gegen Blur-Ränder
+   - ::after: dunkler Verlauf 105deg rgba(21,42,27,.9)/.55/.3 (Textseite → Bildseite)
+   - Glas-Cards: rgba(21,42,27,.55) + blur(12px) + --glass-brd; helle Variante .78-weiß für Map/Text
+   Heller Text + Shadows für Lesbarkeit. Alle Rubrik-Sections nutzen dieses System. */
 .photo-band{position:relative;isolation:isolate;color:#fff;overflow:hidden;border-radius:28px;margin:0 .6rem}
 .photo-band .band-bg{position:absolute;inset:0;z-index:-2}
-.photo-band .band-bg img{width:100%;height:100%;object-fit:cover;border-radius:0}
+.photo-band .band-bg img{width:100%;height:100%;object-fit:cover;border-radius:0;
+  filter:blur(4px) brightness(.9);transform:scale(1.06)}
 .photo-band::after{content:"";position:absolute;inset:0;z-index:-1;
   background:linear-gradient(105deg,rgba(21,42,27,.9) 25%,rgba(21,42,27,.55) 60%,rgba(21,42,27,.3))}
-.photo-band h1,.photo-band h2{color:#fff}
-.photo-band .lead{color:#eef3ec}
+.photo-band h1,.photo-band h2{color:#fff;text-shadow:0 2px 14px rgba(0,0,0,.75),0 1px 3px rgba(0,0,0,.85)}
+.photo-band .lead{color:#eef3ec;text-shadow:0 1px 10px rgba(0,0,0,.7)}
+.photo-band .kicker{color:var(--amber);text-shadow:0 1px 6px rgba(0,0,0,.7)}
 .photo-band .contact-card{background:rgba(21,42,27,.55);border:var(--glass-brd);
   backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
 .photo-band .map-facade{background:rgba(255,255,255,.78);border:var(--glass-brd);
   backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:var(--ink)}
+/* Rubrik-Sections: weiße Text-Cards werden Glas-Cards (dunkel für Service-Rows, milchig für USP-Cards) */
+.photo-band .service-row{background:rgba(21,42,27,.55);border:var(--glass-brd);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  box-shadow:0 12px 32px rgba(0,0,0,.3);color:#eef3ec}
+.photo-band .service-row h2{color:#fff}
+.photo-band .service-row p{color:#eef3ec;text-shadow:0 1px 6px rgba(0,0,0,.6)}
+.photo-band .service-row .more{color:var(--amber)}
+.photo-band .checklist li{color:#eef3ec;text-shadow:0 1px 6px rgba(0,0,0,.6)}
+.photo-band .tag{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.45);color:#fff}
+.photo-band .ba-caption{color:#dfe7dd}
+.photo-band .service-img{box-shadow:0 12px 32px rgba(0,0,0,.35)}
+.photo-band .card{background:rgba(247,243,235,.82);border:1px solid rgba(255,255,255,.6);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.photo-band .btn-ghost{background:rgba(255,255,255,.1);border-color:#fff;color:#fff}
+.photo-band .btn-ghost:hover{background:rgba(255,255,255,.22)}
+.photo-band + .photo-band{margin-top:1rem}
 /* ---------- Masonry-Galerie ---------- */
 .masonry{display:block;columns:3 300px;column-gap:1.1rem}
 .masonry figure{break-inside:avoid;margin:0 0 1.1rem}
