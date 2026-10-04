@@ -239,6 +239,42 @@ a.photo-card .photo-body p{color:#eef3ec}
 .gallery img{border-radius:0;height:260px;width:100%;object-fit:cover;transition:transform .35s}
 .gallery figure:hover img{transform:scale(1.05)}
 .gallery figcaption{padding:.55rem .8rem;font-size:.85rem;font-weight:650;color:var(--stone-600)}
+/* ---------- Vorher-Nachher: Baumpflege-Fortschritt, gleicher Einsatz ---------- */
+.before-after{margin:0}
+.before-after .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.before-after .ba-item{position:relative;margin:0;overflow:hidden;border-radius:14px;
+  border:1px solid var(--stone-200);background:var(--stone-100)}
+.service-img.before-after .ba-item img,.before-after .ba-item img{width:100%;height:100%;
+  aspect-ratio:1/1;object-fit:cover;border-radius:0}
+.before-after .ba-during{object-position:50% 18%}
+.before-after .ba-after{object-position:68% 28%}
+.ba-badge{position:absolute;top:.6rem;left:.6rem;background:rgba(21,42,27,.78);color:#fff;
+  font-size:.72rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;
+  padding:.3rem .7rem;border-radius:999px;border:1px solid rgba(255,255,255,.45);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.ba-caption{margin:.7rem 0 0;font-size:.88rem;font-weight:650;color:var(--stone-600)}
+/* Animierte Galerie-Variante: Fortschritt blendet alle 4 s weich über (8-s-Zyklus, nur CSS) */
+.gallery .span-all{column-span:all}
+.before-after--animated .ba-grid{position:relative;grid-template-columns:1fr;aspect-ratio:16/10;
+  overflow:hidden;border-radius:14px;border:1px solid var(--stone-200);background:var(--stone-100)}
+.before-after--animated .ba-item{border:none;border-radius:0;background:none;overflow:visible}
+.before-after--animated .ba-item img{position:absolute;inset:0;aspect-ratio:auto}
+.before-after--animated .ba-item:last-child .ba-badge{left:auto;right:.6rem}
+.before-after--animated .ba-item:last-child img{animation:baFade 8s ease-in-out infinite}
+.before-after--animated .ba-item:last-child .ba-badge{animation:baFade 8s ease-in-out infinite}
+@keyframes baFade{0%,42%{opacity:1}50%,92%{opacity:0}100%{opacity:1}}
+.ba-hint{display:inline-block;margin-left:.6rem;font-size:.78rem;font-weight:600;color:var(--stone-600)}
+@media (prefers-reduced-motion:reduce){
+  .before-after--animated .ba-grid{grid-template-columns:1fr 1fr;aspect-ratio:auto;
+    overflow:visible;border:none;background:none}
+  .before-after--animated .ba-item{border:1px solid var(--stone-200);border-radius:14px;
+    overflow:hidden;background:var(--stone-100)}
+  .before-after--animated .ba-item img{position:static;aspect-ratio:1/1}
+  .before-after--animated .ba-item:last-child .ba-badge{left:.6rem;right:auto}
+  .before-after--animated .ba-item:last-child img,
+  .before-after--animated .ba-item:last-child .ba-badge{animation:none}
+  .ba-hint{display:none}
+}
 dialog#lightbox{border:none;border-radius:var(--radius-lg);padding:0;max-width:min(92vw,1000px);background:#111}
 dialog#lightbox::backdrop{background:rgba(0,0,0,.78)}
 dialog#lightbox img{border-radius:12px 12px 0 0;max-height:76vh;max-width:100%;width:auto;margin:0 auto}
