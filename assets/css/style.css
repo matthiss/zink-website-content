@@ -8,8 +8,8 @@
   --stone-50:#faf8f2; --stone-100:#f3efe6; --stone-200:#e3dcc9; --stone-600:#5d574b;
   --ink:#20261e; --amber:#f2b73e; --amber-dark:#7a5107;
   --radius:20px; --radius-lg:22px;
-  --glass-brd:1px solid rgba(255,255,255,.25);
-  --glass-bg:rgba(255,255,255,.12);
+  --glass-brd:1px solid rgba(255,255,255,.45);
+  --glass-bg:rgba(255,255,255,.22);
   --shadow:0 10px 30px rgba(21,42,27,.14);
   --shadow-lg:0 24px 60px rgba(21,42,27,.28);
   --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
@@ -55,11 +55,13 @@ h3{font-size:1.15rem;font-weight:750}
 .btn-accent:hover{background:var(--bark-dark);transform:translateY(-1px)}
 .btn-ghost{background:#fff;border-color:var(--green-900);color:var(--green-950)}
 .btn-ghost:hover{background:var(--green-100);transform:translateY(-1px)}
-/* Glas-Button: durchsichtig, für Hero/Header/Bildbänder */
-.btn-glass{background:var(--glass-bg);border:var(--glass-brd);color:#fff;
-  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
-  box-shadow:0 8px 24px rgba(0,0,0,.25);white-space:nowrap}
-.btn-glass:hover{background:rgba(255,255,255,.22);transform:translateY(-1px);color:#fff}
+/* Glas-Button: deckend genug für AA-Kontrast (weiß auf dunkel + blur) */
+.btn-glass{background:rgba(20,32,23,.55);border:1px solid rgba(255,255,255,.5);color:#fff;
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  box-shadow:0 8px 24px rgba(0,0,0,.35);white-space:nowrap;
+  text-shadow:0 1px 3px rgba(0,0,0,.6)}
+.btn-glass:hover{background:rgba(20,32,23,.7);border-color:#fff;transform:translateY(-1px);color:#fff}
+.hero-cta .btn{padding:.85rem 1.6rem;font-size:1.02rem}
 .btn:active{transform:translateY(0)}
 /* Einheitlicher sichtbarer Fokus (Tastatur, WCAG 2.4.7) */
 a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
@@ -93,19 +95,21 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
 .hero{position:relative;overflow:hidden;background:var(--green-950);color:#fff;border-radius:0 0 28px 28px;
   min-height:92vh;display:flex;align-items:center}
 .hero-bg{position:absolute;inset:0}
-.hero-bg img{width:100%;height:100%;object-fit:cover;border-radius:0;opacity:.55}
+.hero-bg img{width:100%;height:100%;object-fit:cover;border-radius:0;opacity:.92}
 .hero-bg img.pos-low{object-position:50% 78%}
+/* Overlay nur links/unten für Textlesbarkeit – rechtes Drittel (Baum) fast unabgedunkelt */
 .hero-bg::after{content:"";position:absolute;inset:0;
   background:
-    radial-gradient(60rem 30rem at 85% 10%,rgba(242,183,62,.22),transparent 60%),
-    radial-gradient(50rem 28rem at 10% 90%,rgba(107,79,53,.35),transparent 60%),
-    linear-gradient(100deg,rgba(21,42,27,.94) 20%,rgba(21,42,27,.58) 55%,rgba(21,42,27,.18)),
-    linear-gradient(to top,rgba(21,42,27,.72),transparent 32%)}
+    radial-gradient(60rem 30rem at 85% 10%,rgba(242,183,62,.12),transparent 60%),
+    linear-gradient(90deg,rgba(10,20,13,.62) 0%,rgba(10,20,13,.45) 32%,rgba(10,20,13,.12) 55%,transparent 68%),
+    linear-gradient(to top,rgba(10,20,13,.5),transparent 26%)}
 .hero-inner{position:relative;padding:clamp(3.5rem,9vw,6.5rem) 0;max-width:var(--max);margin:0 auto;
   padding-left:1.25rem;padding-right:1.25rem;width:100%}
 .hero .kicker{color:var(--amber)}
-.hero h1{color:#fff;max-width:16ch}
-.hero p{color:#eef3ec;max-width:58ch;font-size:clamp(1.02rem,2vw,1.25rem)}
+.hero h1{color:#fff;max-width:16ch;text-shadow:0 2px 14px rgba(0,0,0,.75),0 1px 3px rgba(0,0,0,.85)}
+.hero p{color:#eef3ec;max-width:58ch;font-size:clamp(1.02rem,2vw,1.25rem);
+  text-shadow:0 1px 10px rgba(0,0,0,.7),0 1px 3px rgba(0,0,0,.8)}
+.hero .kicker{text-shadow:0 1px 6px rgba(0,0,0,.7)}
 .hero-cta{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.4rem}
 .hero-cta .btn-ghost{background:rgba(255,255,255,.1);border-color:#fff;color:#fff}
 .hero-cta .btn-ghost:hover{background:rgba(255,255,255,.22)}
@@ -155,6 +159,11 @@ section{padding:clamp(2.5rem,6vw,4.5rem) 0}
 .photo-body p{color:#eef3ec;font-size:.95rem;margin:0 0 .9rem}
 .photo-body .more{color:var(--amber);font-weight:800;text-decoration:none}
 .photo-body .more:hover{text-decoration:underline;text-underline-offset:3px}
+/* Ganze Foto-Card als Link: per Tab erreichbar, Hover-Lift + Fokus-Ring */
+a.photo-card{text-decoration:none;color:inherit;cursor:pointer}
+a.photo-card:focus-visible{outline:3px solid var(--amber);outline-offset:3px;border-radius:var(--radius-lg)}
+a.photo-card .photo-body h3{color:#fff}
+a.photo-card .photo-body p{color:#eef3ec}
 .chip-glass{display:inline-block;background:var(--glass-bg);border:var(--glass-brd);
   backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
   border-radius:999px;padding:.3rem .9rem;font-size:.78rem;font-weight:800;
