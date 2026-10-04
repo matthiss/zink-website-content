@@ -13,7 +13,7 @@
   --shadow:0 10px 30px rgba(21,42,27,.14);
   --shadow-lg:0 24px 60px rgba(21,42,27,.28);
   --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
-  --font-display:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+  --font-display:system-ui,-apple-system,"Segoe UI",Roboto,Inter,sans-serif;
   --max:1120px; --header-h:68px;
 }
 *{box-sizing:border-box}
@@ -27,11 +27,11 @@ a{color:var(--green-900)}
   font-weight:800;color:var(--green-700);margin-bottom:.4rem}
 .kicker::before{content:"";display:inline-block;width:26px;height:3px;background:var(--amber);
   border-radius:2px;margin-right:.55rem;vertical-align:middle}
-h1,h2,h3{line-height:1.12;letter-spacing:-.01em;color:var(--green-950);margin:0 0 .6rem;
+h1,h2,h3{line-height:1.12;letter-spacing:-.02em;color:var(--green-950);margin:0 0 .6rem;
   font-family:var(--font-display)}
-h1{font-size:clamp(2rem,5vw,3.4rem);font-weight:850}
-h2{font-size:clamp(1.5rem,3.4vw,2.2rem);font-weight:800}
-h3{font-size:1.15rem;font-weight:750}
+h1{font-size:clamp(2rem,5vw,3.4rem);font-weight:800}
+h2{font-size:clamp(1.5rem,3.4vw,2.2rem);font-weight:700}
+h3{font-size:1.15rem;font-weight:700}
 .lead{font-size:clamp(1.05rem,2vw,1.3rem);color:#3d4438;max-width:62ch}
 /* ---------- header: sticky dark glass ---------- */
 .site-header{position:sticky;top:0;z-index:50;background:rgba(21,42,27,.72);
@@ -41,7 +41,7 @@ h3{font-size:1.15rem;font-weight:750}
 .brand{display:flex;align-items:center;gap:.7rem;text-decoration:none;color:#fff}
 .brand-mark{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--green-900),var(--green-700));
   display:grid;place-items:center;color:#fff;font-weight:900;font-size:1.3rem;box-shadow:var(--shadow)}
-.brand-name{font-weight:850;line-height:1.15;font-size:1.02rem;font-family:var(--font-display)}
+.brand-name{font-weight:800;line-height:1.15;font-size:1.02rem;font-family:var(--font-display);letter-spacing:-.02em}
 .brand-name small{display:block;font-family:var(--font);font-weight:600;color:#c9d3c6;font-size:.75rem;letter-spacing:.06em}
 .main-nav{margin-left:auto;display:flex;gap:.15rem;align-items:center}
 .main-nav a{text-decoration:none;color:#eef3ec;font-weight:650;font-size:.95rem;
@@ -149,14 +149,17 @@ section{padding:clamp(2.5rem,6vw,4.5rem) 0}
   border:1px solid rgba(255,255,255,.18);box-shadow:var(--shadow-lg);
   transition:transform .3s ease,box-shadow .3s ease}
 .photo-card>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  border-radius:0;z-index:-2;transition:transform .5s ease}
+  border-radius:0;z-index:-2;transition:transform .5s ease;
+  filter:blur(1.5px) brightness(.82);transform:scale(1.04)}
 .photo-card::after{content:"";position:absolute;inset:0;z-index:-1;
-  background:linear-gradient(to top,rgba(15,28,19,.92) 8%,rgba(15,28,19,.45) 48%,transparent 75%)}
+  background:linear-gradient(to top,rgba(15,28,19,.94) 12%,rgba(15,28,19,.6) 52%,rgba(15,28,19,.25) 78%)}
 .photo-card:hover{transform:translateY(-6px)}
-.photo-card:hover>img{transform:scale(1.06)}
+.photo-card:hover>img{transform:scale(1.08)}
 .photo-body{padding:1.5rem;color:#fff;width:100%}
-.photo-body h3{color:#fff;font-size:1.35rem;margin:.55rem 0 .4rem}
-.photo-body p{color:#eef3ec;font-size:.95rem;margin:0 0 .9rem}
+.photo-body h3{color:#fff;font-size:1.35rem;margin:.55rem 0 .4rem;
+  text-shadow:0 1px 3px rgba(0,0,0,.7),0 2px 12px rgba(0,0,0,.55)}
+.photo-body p{color:#eef3ec;font-size:.95rem;margin:0 0 .9rem;
+  text-shadow:0 1px 3px rgba(0,0,0,.65)}
 .photo-body .more{color:var(--amber);font-weight:800;text-decoration:none}
 .photo-body .more:hover{text-decoration:underline;text-underline-offset:3px}
 /* Ganze Foto-Card als Link: per Tab erreichbar, Hover-Lift + Fokus-Ring */
