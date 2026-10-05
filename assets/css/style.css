@@ -271,15 +271,15 @@ a.photo-card .photo-body p{color:#eef3ec}
   padding:.3rem .7rem;border-radius:999px;border:1px solid rgba(255,255,255,.45);
   backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .ba-caption{margin:.7rem 0 0;font-size:.88rem;font-weight:650;color:var(--stone-600)}
-/* Animierte Galerie-Variante: Fortschritt blendet alle 4 s weich über (8-s-Zyklus, nur CSS) */
+/* Animierte Vorher-Nachher-Variante: Fortschritt blendet alle 3,5 s weich über (7-s-Zyklus, nur CSS) */
 .gallery .span-all{column-span:all}
 .before-after--animated .ba-grid{position:relative;grid-template-columns:1fr;aspect-ratio:16/10;
   overflow:hidden;border-radius:14px;border:1px solid var(--stone-200);background:var(--stone-100)}
 .before-after--animated .ba-item{border:none;border-radius:0;background:none;overflow:visible}
 .before-after--animated .ba-item img{position:absolute;inset:0;aspect-ratio:auto}
 .before-after--animated .ba-item:last-child .ba-badge{left:auto;right:.6rem}
-.before-after--animated .ba-item:last-child img{animation:baFade 8s ease-in-out infinite}
-.before-after--animated .ba-item:last-child .ba-badge{animation:baFade 8s ease-in-out infinite}
+.before-after--animated .ba-item:last-child img{animation:baFade 7s ease-in-out infinite}
+.before-after--animated .ba-item:last-child .ba-badge{animation:baFade 7s ease-in-out infinite}
 @keyframes baFade{0%,42%{opacity:1}50%,92%{opacity:0}100%{opacity:1}}
 .ba-hint{display:inline-block;margin-left:.6rem;font-size:.78rem;font-weight:600;color:var(--stone-600)}
 @media (prefers-reduced-motion:reduce){
@@ -292,6 +292,16 @@ a.photo-card .photo-body p{color:#eef3ec}
   .before-after--animated .ba-item:last-child img,
   .before-after--animated .ba-item:last-child .ba-badge{animation:none}
   .ba-hint{display:none}
+}
+/* Leistungen: gestapelter Crossfade bleibt auch bei reduced-motion gestapelt –
+   erstes Bild statisch (zweites ausgeblendet), kein Zurückfallen auf nebeneinander */
+@media (prefers-reduced-motion:reduce){
+  .service-row .before-after--animated .ba-grid{position:relative;grid-template-columns:1fr;
+    aspect-ratio:16/10;overflow:hidden;border-radius:14px;border:1px solid var(--stone-200);
+    background:var(--stone-100)}
+  .service-row .before-after--animated .ba-item{border:none;border-radius:0;background:none;overflow:visible}
+  .service-row .before-after--animated .ba-item img{position:absolute;inset:0;aspect-ratio:auto}
+  .service-row .before-after--animated .ba-item:last-child img{animation:none;opacity:0}
 }
 dialog#lightbox{border:none;border-radius:var(--radius-lg);padding:0;max-width:min(92vw,1000px);background:#111}
 dialog#lightbox::backdrop{background:rgba(0,0,0,.78)}
