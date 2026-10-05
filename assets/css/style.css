@@ -325,8 +325,12 @@ dialog#lightbox img{border-radius:12px 12px 0 0;max-height:76vh;max-width:100%;w
 .map-address{font-size:1.15rem;margin:.4rem 0 1rem}
 .map-frame{width:100%;height:380px;border:0;border-radius:12px}
 .map-links{margin-top:1rem;font-size:.92rem}
-/* footer */
-footer{background:var(--green-950);color:#dfe7dd;margin-top:2rem;border-radius:var(--radius-band) var(--radius-band) 0 0}
+/* footer full-bleed with wave top (v1.2.1: keine weissen Streifen, Wellenkante wie hero-wave) */
+html{background:var(--green-950)}
+footer{background:var(--green-950);color:#dfe7dd;margin:0;border-radius:0;margin-bottom:0}
+.footer-wave{line-height:0;background:var(--stone-50);margin:2rem 0 -1px;pointer-events:none}
+.footer-wave svg{display:block;width:100%;height:clamp(44px,7vw,84px)}
+main>section:last-child{margin-bottom:0}
 .footer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;padding:2.8rem 0 1rem}
 footer h3{color:#fff;font-size:1rem;text-transform:uppercase;letter-spacing:.1em}
 footer a{color:#dfe7dd}
@@ -373,5 +377,7 @@ footer li{margin:.3rem 0}
   .mobile-call{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:60;
     background:var(--green-900);color:#fff;text-decoration:none;font-weight:850;
     justify-content:center;padding:.95rem;font-size:1.05rem}
-  body{padding-bottom:3.2rem}
+  body{padding-bottom:0}
+  footer{padding-bottom:3.2rem}
+  .footer-wave{margin-top:1.2rem}
 }
