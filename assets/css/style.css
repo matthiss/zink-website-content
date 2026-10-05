@@ -81,6 +81,10 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
 .justify-center{justify-content:center}
 /* Anker-Ziele: nicht unter dem Sticky-Header verstecken */
 [id]{scroll-margin-top:calc(var(--header-h) + 16px)}
+/* Mobil: Header höher durch Brand-Wrap (2-zeilig) + Toggle → größerer Anker-Offset (104px) */
+@media(max-width:900px){
+  [id]{scroll-margin-top:calc(var(--header-h) + 36px)}
+}
 /* Leistungs-Tags + Checklisten (Klassen wurden benutzt, aber nie definiert) */
 .tag{display:inline-block;background:var(--green-100);color:var(--green-950);
   font-weight:800;font-size:.8rem;letter-spacing:.04em;border-radius:999px;
