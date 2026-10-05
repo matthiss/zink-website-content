@@ -50,6 +50,19 @@
     dialog.addEventListener("click", function (e) {
       if (e.target === dialog) dialog.close();
     });
+  } else {
+    // Fallback ohne <dialog>: Galeriebild direkt in voller Größe verlinken
+    document.querySelectorAll(".gallery figure").forEach(function (fig) {
+      var full = fig.querySelector("img");
+      if (!full || fig.querySelector("a")) return;
+      var link = document.createElement("a");
+      link.href = full.currentSrc || full.src;
+      link.target = "_blank";
+      link.rel = "noopener";
+      link.setAttribute("aria-label", "Bild in voller Größe öffnen: " + (full.alt || "Referenzbild"));
+      full.before(link);
+      link.appendChild(full);
+    });
   }
 
   // Map facade: only load OpenStreetMap embed after explicit consent click

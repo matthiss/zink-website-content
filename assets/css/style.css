@@ -40,8 +40,6 @@ h3{font-size:1.15rem;font-weight:700}
   margin-bottom:calc(-1 * var(--header-h))}
 .header-inner{display:flex;align-items:center;gap:1rem;padding:.7rem 0}
 .brand{display:flex;align-items:center;gap:.7rem;text-decoration:none;color:#fff}
-.brand-mark{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--green-900),var(--green-700));
-  display:grid;place-items:center;color:#fff;font-weight:900;font-size:1.3rem;box-shadow:var(--shadow)}
 .brand-logo{height:40px;width:auto;border-radius:10px;display:block;background:transparent;box-shadow:var(--shadow)}
 .brand-name{font-weight:800;line-height:1.15;font-size:1.02rem;font-family:var(--font-display);letter-spacing:-.02em}
 .brand-name small{display:block;font-family:var(--font);font-weight:600;color:#c9d3c6;font-size:.75rem;letter-spacing:.06em}
@@ -53,8 +51,6 @@ h3{font-size:1.15rem;font-weight:700}
   border-radius:999px;padding:.7rem 1.35rem;border:2px solid transparent;cursor:pointer;font-size:.98rem}
 .btn-call{background:var(--green-900);color:#fff;box-shadow:var(--shadow);white-space:nowrap}
 .btn-call:hover{background:var(--green-950);transform:translateY(-1px)}
-.btn-accent{background:var(--bark);color:#fff;box-shadow:var(--shadow);white-space:nowrap}
-.btn-accent:hover{background:var(--bark-dark);transform:translateY(-1px)}
 .btn-ghost{background:#fff;border-color:var(--green-900);color:var(--green-950)}
 .btn-ghost:hover{background:var(--green-100);transform:translateY(-1px)}
 /* Glas-Button: deckend genug für AA-Kontrast (weiß auf dunkel + blur) */
@@ -64,7 +60,7 @@ h3{font-size:1.15rem;font-weight:700}
   text-shadow:0 1px 3px rgba(0,0,0,.6)}
 .btn-glass:hover{background:rgba(20,32,23,.7);border-color:#fff;transform:translateY(-1px);color:#fff}
 /* Header-Anrufen: gleiche Farbe wie Akzente (Kicker-Gelb); nur color, Rest (BG/Border/Blur) unverändert */
-.btn-glass.header-cta,.header-phone{color:var(--amber)}
+.btn-glass.header-cta{color:var(--amber)}
 .btn-glass.header-cta:hover{color:var(--amber)}
 .hero-cta .btn{padding:.85rem 1.6rem;font-size:1.02rem}
 .btn:active{transform:translateY(0)}
@@ -131,11 +127,8 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
 .hero .hero-badges li a:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
 /* ---------- sections ---------- */
 section{padding:clamp(2.5rem,6vw,4.5rem) 0}
-.section-stone{background:var(--stone-100);border-radius:28px;margin:0 .6rem}
 .grid{display:grid;gap:1.2rem}
-.grid-3{grid-template-columns:repeat(3,1fr)}
 .grid-4{grid-template-columns:repeat(4,1fr)}
-.grid-2{grid-template-columns:repeat(2,1fr)}
 .card{background:#fff;border:1px solid var(--stone-200);border-radius:var(--radius);
   padding:1.4rem;box-shadow:0 2px 10px rgba(21,42,27,.06);transition:transform .25s,box-shadow .25s}
 .card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
@@ -144,14 +137,11 @@ section{padding:clamp(2.5rem,6vw,4.5rem) 0}
 .card p{margin:.3rem 0 .8rem;color:#3f4539;font-size:.95rem}
 .card .more{font-weight:750;text-decoration:none;display:inline-block}
 .card .more:hover{text-decoration:underline;text-underline-offset:3px}
-.service-row .more{display:inline-block;margin-top:.4rem;font-weight:750;text-decoration:none}
-.service-row .more:hover{text-decoration:underline;text-underline-offset:3px}
-/* Leistungen-cards mit großem Bild (16/10, kein Thumbnail) */
-.card-leistung{padding:0;overflow:hidden;display:flex;flex-direction:column}
-.card-leistung .card-img{margin:0;aspect-ratio:16/10;overflow:hidden;background:var(--stone-200)}
-.card-leistung .card-img img{width:100%;height:100%;object-fit:cover;border-radius:0}
-.card-leistung .card-body{padding:1.3rem 1.4rem 1.4rem;display:flex;flex-direction:column;gap:.2rem;flex:1}
-.card-leistung h3{margin:.4rem 0 .3rem}
+/* USP-Cards: ganzer Kartenbereich klickbar (Stretched-Link), Tastaturfokus bleibt sichtbar */
+.card{position:relative}
+.card-more{display:inline-block;margin-top:.5rem;font-weight:750;text-decoration:none}
+.card-more:hover{text-decoration:underline;text-underline-offset:3px}
+.card-more::after{content:"";position:absolute;inset:0;border-radius:inherit}
 /* ---------- Foto-Cards: Bild füllt die Karte, Text als Overlay unten ---------- */
 .photo-grid{grid-template-columns:repeat(3,1fr)}
 .photo-card{position:relative;border-radius:var(--radius-lg);overflow:hidden;
@@ -235,7 +225,6 @@ a.photo-card .photo-body p{color:#eef3ec}
 .photo-band .service-row .more{color:var(--amber)}
 .photo-band .checklist li{color:#eef3ec;text-shadow:0 1px 6px rgba(0,0,0,.6)}
 .photo-band .tag{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.45);color:#fff}
-.photo-band .ba-caption{color:#dfe7dd}
 .photo-band .service-img{box-shadow:0 12px 32px rgba(0,0,0,.35)}
 .photo-band .card{background:rgba(247,243,235,.82);border:1px solid rgba(255,255,255,.6);
   backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
@@ -249,8 +238,6 @@ a.photo-card .photo-body p{color:#eef3ec}
 /* Galerie-Teaser auf der Startseite: 3–4 große Kacheln */
 .gallery-large{grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.1rem}
 .gallery-large img{height:260px}
-.gallery-featured{grid-column:span 2}
-.gallery-featured img{height:320px}
 .usp-num{font-size:2rem;font-weight:900;color:var(--green-700);letter-spacing:0}
 @supports (-webkit-text-stroke:1px black){
   .usp-num{color:var(--green-100);-webkit-text-stroke:1.5px var(--green-700)}
@@ -270,6 +257,9 @@ a.photo-card .photo-body p{color:#eef3ec}
 .gallery img{border-radius:0;height:260px;width:100%;object-fit:cover;transition:transform .35s}
 .gallery figure:hover img{transform:scale(1.05)}
 .gallery figcaption{padding:.55rem .8rem;font-size:.85rem;font-weight:650;color:var(--stone-600)}
+/* Galerie-Sprunglinks im Intro (dunkles Band: heller Text + Amber-Links) */
+.galerie-sprung{font-size:.95rem;color:#eef3ec;text-shadow:0 1px 6px rgba(0,0,0,.6)}
+.galerie-sprung a{color:var(--amber);font-weight:700}
 /* ---------- Vorher-Nachher: Baumpflege-Fortschritt, gleicher Einsatz ---------- */
 .before-after{margin:0}
 .before-after .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
@@ -279,36 +269,24 @@ a.photo-card .photo-body p{color:#eef3ec}
   aspect-ratio:1/1;object-fit:cover;border-radius:0}
 .before-after .ba-during{object-position:50% 18%}
 .before-after .ba-after{object-position:68% 28%}
-.ba-badge{position:absolute;top:.6rem;left:.6rem;background:rgba(21,42,27,.78);color:#fff;
-  font-size:.72rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;
-  padding:.3rem .7rem;border-radius:999px;border:1px solid rgba(255,255,255,.45);
-  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-.ba-caption{margin:.7rem 0 0;font-size:.88rem;font-weight:650;color:var(--stone-600)}
 /* Animierte Vorher-Nachher-Variante: Fortschritt blendet alle 3,5 s weich über (7-s-Zyklus, nur CSS) */
-.gallery .span-all{column-span:all}
 .before-after--animated{position:relative;aspect-ratio:auto;overflow:hidden;
   border-radius:14px;border:1px solid var(--stone-200);background:#1a241c}
 .before-after--animated .ba-grid{position:relative;display:grid;grid-template-columns:1fr;margin:0;
   aspect-ratio:16/10;overflow:hidden;border:none;border-radius:0;background:transparent}
 .before-after--animated .ba-item{grid-area:1/1;position:static;margin:0;border:none;border-radius:0;background:transparent;overflow:hidden}
 .before-after--animated .ba-item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;aspect-ratio:auto;border-radius:0}
-.before-after--animated .ba-item:last-child .ba-badge{left:auto;right:.6rem}
 .before-after--animated .ba-item:last-child img{animation:baFade 7s ease-in-out infinite}
-.before-after--animated .ba-item:last-child .ba-badge{animation:baFade 7s ease-in-out infinite}
 @keyframes baFade{0%,42%{opacity:1}50%,92%{opacity:0}100%{opacity:1}}
 .gallery .before-after--animated figcaption{position:relative;z-index:2;display:block;
   background:rgba(21,42,27,.85);color:#fff}
-.ba-hint{display:inline-block;margin-left:.6rem;font-size:.78rem;font-weight:600;color:var(--stone-600)}
 @media (prefers-reduced-motion:reduce){
   .before-after--animated .ba-grid{grid-template-columns:1fr 1fr;aspect-ratio:auto;
     overflow:visible;border:none;background:none}
   .before-after--animated .ba-item{border:1px solid var(--stone-200);border-radius:14px;
     overflow:hidden;background:var(--stone-100)}
   .before-after--animated .ba-item img{position:static;aspect-ratio:1/1}
-  .before-after--animated .ba-item:last-child .ba-badge{left:.6rem;right:auto}
-  .before-after--animated .ba-item:last-child img,
-  .before-after--animated .ba-item:last-child .ba-badge{animation:none}
-  .ba-hint{display:none}
+  .before-after--animated .ba-item:last-child img{animation:none}
 }
 /* Leistungen: gestapelter Crossfade bleibt auch bei reduced-motion gestapelt –
    erstes Bild statisch (zweites ausgeblendet), kein Zurückfallen auf nebeneinander */
@@ -370,11 +348,9 @@ footer .slogan{margin-top:.6rem;color:#b9c4b6}
 /* responsive */
 @media(max-width:900px){
   .grid-4{grid-template-columns:repeat(2,1fr)}
-  .grid-3,.grid-2,.contact-grid,.service-row,.photo-grid{grid-template-columns:1fr}
+  .contact-grid,.service-row,.photo-grid{grid-template-columns:1fr}
   .service-row:nth-child(even) .service-img{order:0}
   .footer-grid{grid-template-columns:1fr}
-  .gallery-featured{grid-column:span 1}
-  .gallery-featured img{height:260px}
   .photo-card{min-height:380px}
 }
 @media(max-width:720px){

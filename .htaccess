@@ -1,11 +1,11 @@
-# Zink statisch – Apache/Plesk. HTTPS/HSTS nur aktivieren, wenn Zertifikat steht!
+# Zink statisch – Apache/Plesk. Canonical: https://www.dienstleistungsservice-zink.de (vgl. <link rel="canonical">).
 <IfModule mod_rewrite.c>
 RewriteEngine On
-# Kanonische Domain (ggf. anpassen/aktivieren):
-# RewriteCond %{HTTPS} off
-# RewriteRule ^ https://www.dienstleistungsservice-zink.de%{REQUEST_URI} [R=301,L]
-# RewriteCond %{HTTP_HOST} !^www\. [NC]
-# RewriteRule ^ https://www.dienstleistungsservice-zink.de%{REQUEST_URI} [R=301,L]
+# Kanonische Domain: http → https und non-www → www (301)
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://www.dienstleistungsservice-zink.de%{REQUEST_URI} [R=301,L]
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteRule ^ https://www.dienstleistungsservice-zink.de%{REQUEST_URI} [R=301,L]
 
 # Alte WP-Seiten → neue statische Seiten (301)
 RewriteRule ^impressum/?$ /impressum.html [R=301,L]
@@ -48,6 +48,15 @@ ExpiresByType text/css "access plus 30 days"
 ExpiresByType application/javascript "access plus 30 days"
 ExpiresByType image/jpeg "access plus 90 days"
 ExpiresByType image/png "access plus 90 days"
+ExpiresByType image/webp "access plus 90 days"
+ExpiresByType image/avif "access plus 90 days"
+ExpiresByType image/svg+xml "access plus 90 days"
+ExpiresByType image/x-icon "access plus 90 days"
+</IfModule>
+
+# Kompression für Text-Assets (HTML/CSS/JS/SVG/JSON)
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/json image/svg+xml
 </IfModule>
 
 ErrorDocument 404 /404.html
