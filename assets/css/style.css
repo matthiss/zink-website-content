@@ -292,6 +292,7 @@ a.photo-card .photo-body p{color:#eef3ec}
 .before-after--animated .ba-item:last-child img{animation:baFade 7s ease-in-out infinite}
 .before-after--animated .ba-item:last-child .ba-badge{animation:baFade 7s ease-in-out infinite}
 @keyframes baFade{0%,42%{opacity:1}50%,92%{opacity:0}100%{opacity:1}}
+.gallery .before-after--animated figcaption{color:#fff}
 .ba-hint{display:inline-block;margin-left:.6rem;font-size:.78rem;font-weight:600;color:var(--stone-600)}
 @media (prefers-reduced-motion:reduce){
   .before-after--animated .ba-grid{grid-template-columns:1fr 1fr;aspect-ratio:auto;
