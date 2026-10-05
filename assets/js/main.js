@@ -72,7 +72,7 @@
         '#map=16/' + lat + '/' + lon + '" rel="noopener">In OpenStreetMap öffnen →</a><br>' +
         '<a href="https://www.openstreetmap.org/directions?to=' + lat + '%2C' + lon +
         '" rel="noopener">Route planen →</a><br>' +
-        '<a href="https://www.google.com/maps/search/?api=1&query=Bahnhofstra%C3%9Fe+10+04523+Pegau" rel="noopener">In Google Maps öffnen →</a><br>' +
+        '<a href="https://maps.app.goo.gl/SLYVxK5FwXXPCiA19" rel="noopener">In Google Maps öffnen →</a><br>' +
         '<a href="https://www.google.com/maps/dir/?api=1&destination=Bahnhofstra%C3%9Fe+10+04523+Pegau" rel="noopener">Route in Google Maps planen →</a>';
       host.replaceChildren(frame, links);
     });
