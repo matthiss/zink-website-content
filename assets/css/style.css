@@ -278,11 +278,13 @@ a.photo-card .photo-body p{color:#eef3ec}
 .gallery figure:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
 .gallery img{border-radius:0;height:260px;width:100%;object-fit:cover;transition:transform .35s}
 .gallery figure:hover img{transform:scale(1.05)}
-/* Galerie-Captions als schwebendes Glas-Panel über dem Bild (Referenz Hoftor-Card Bild 3) */
-.gallery figcaption,.masonry figure figcaption,.ba-caption{position:absolute;left:12px;right:12px;bottom:12px;
-  background:rgba(21,42,27,.62);border:1px solid rgba(255,255,255,.22);
+/* Galerie-Captions: dezent einzeilig, halbe Breite zentriert (nowrap + max-content) */
+.gallery figcaption,.masonry figure figcaption,.ba-caption{position:absolute;left:50%;transform:translateX(-50%);bottom:12px;
+  width:max-content;max-width:calc(100% - 24px);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:center;
+  background:rgba(21,42,27,.45);border:1px solid rgba(255,255,255,.22);
   backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-  padding:.8rem 1rem;font-size:.85rem;font-weight:650;color:#fff;
+  padding:.45rem .9rem;font-size:.85rem;font-weight:650;color:#fff;
   border-radius:14px;text-shadow:0 1px 3px rgba(0,0,0,.6)}
 /* Galerie-Sprunglinks im Intro (dunkles Band: heller Text + Amber-Links) */
 .galerie-sprung{font-size:.95rem;color:#eef3ec;text-shadow:0 1px 6px rgba(0,0,0,.6)}
@@ -305,10 +307,12 @@ a.photo-card .photo-body p{color:#eef3ec}
 .before-after--animated .ba-item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;aspect-ratio:auto;border-radius:0}
 .before-after--animated .ba-item:last-child img{animation:baFade 7s ease-in-out infinite}
 @keyframes baFade{0%,42%{opacity:1}50%,92%{opacity:0}100%{opacity:1}}
-.gallery .before-after--animated figcaption{position:absolute;left:12px;right:12px;bottom:12px;z-index:2;
-  background:rgba(21,42,27,.62);border:1px solid rgba(255,255,255,.22);
+.gallery .before-after--animated figcaption{position:absolute;left:50%;transform:translateX(-50%);bottom:12px;z-index:2;
+  width:max-content;max-width:calc(100% - 24px);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:center;
+  background:rgba(21,42,27,.45);border:1px solid rgba(255,255,255,.22);
   backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-  border-radius:14px;padding:.8rem 1rem;
+  border-radius:14px;padding:.45rem .9rem;font-size:.85rem;font-weight:650;
   color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.6)}
 .gallery .before-after--animated .ba-grid{height:100%}
 @media (prefers-reduced-motion:reduce){
