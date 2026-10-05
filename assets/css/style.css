@@ -273,10 +273,12 @@ a.photo-card .photo-body p{color:#eef3ec}
 .ba-caption{margin:.7rem 0 0;font-size:.88rem;font-weight:650;color:var(--stone-600)}
 /* Animierte Vorher-Nachher-Variante: Fortschritt blendet alle 3,5 s weich über (7-s-Zyklus, nur CSS) */
 .gallery .span-all{column-span:all}
-.before-after--animated .ba-grid{position:relative;grid-template-columns:1fr;aspect-ratio:16/10;
-  overflow:hidden;border-radius:14px;border:1px solid var(--stone-200);background:var(--stone-100)}
-.before-after--animated .ba-item{border:none;border-radius:0;background:none;overflow:visible}
-.before-after--animated .ba-item img{position:absolute;inset:0;aspect-ratio:auto}
+.before-after--animated{position:relative;aspect-ratio:16/10;overflow:hidden;
+  border-radius:14px;border:1px solid var(--stone-200);background:#1a241c}
+.before-after--animated .ba-grid{position:relative;display:grid;grid-template-columns:1fr;margin:0;
+  aspect-ratio:16/10;overflow:hidden;border:none;border-radius:0;background:transparent}
+.before-after--animated .ba-item{grid-area:1/1;position:static;margin:0;border:none;border-radius:0;background:transparent;overflow:hidden}
+.before-after--animated .ba-item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;aspect-ratio:auto;border-radius:0}
 .before-after--animated .ba-item:last-child .ba-badge{left:auto;right:.6rem}
 .before-after--animated .ba-item:last-child img{animation:baFade 7s ease-in-out infinite}
 .before-after--animated .ba-item:last-child .ba-badge{animation:baFade 7s ease-in-out infinite}
@@ -296,11 +298,11 @@ a.photo-card .photo-body p{color:#eef3ec}
 /* Leistungen: gestapelter Crossfade bleibt auch bei reduced-motion gestapelt –
    erstes Bild statisch (zweites ausgeblendet), kein Zurückfallen auf nebeneinander */
 @media (prefers-reduced-motion:reduce){
-  .service-row .before-after--animated .ba-grid{position:relative;grid-template-columns:1fr;
-    aspect-ratio:16/10;overflow:hidden;border-radius:14px;border:1px solid var(--stone-200);
-    background:var(--stone-100)}
-  .service-row .before-after--animated .ba-item{border:none;border-radius:0;background:none;overflow:visible}
-  .service-row .before-after--animated .ba-item img{position:absolute;inset:0;aspect-ratio:auto}
+  .service-row .before-after--animated{aspect-ratio:16/10;overflow:hidden;background:#1a241c}
+  .service-row .before-after--animated .ba-grid{position:relative;display:grid;grid-template-columns:1fr;
+    aspect-ratio:16/10;overflow:hidden;border:none;border-radius:0;background:transparent}
+  .service-row .before-after--animated .ba-item{grid-area:1/1;position:static;margin:0;border:none;border-radius:0;background:transparent;overflow:hidden}
+  .service-row .before-after--animated .ba-item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;aspect-ratio:auto;border-radius:0}
   .service-row .before-after--animated .ba-item:last-child img{animation:none;opacity:0}
 }
 dialog#lightbox{border:none;border-radius:var(--radius-lg);padding:0;max-width:min(92vw,1000px);background:#111}
