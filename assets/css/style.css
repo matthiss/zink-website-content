@@ -339,6 +339,7 @@ footer a{color:#dfe7dd}
 footer ul{list-style:none;padding:0;margin:0}
 footer li{margin:.3rem 0}
 footer .slogan{margin-top:.6rem;color:#b9c4b6}
+.footer-logo{height:34px;width:auto;display:block;background:transparent;border-radius:6px}
 .footer-bottom{border-top:1px solid rgba(255,255,255,.15);padding:1rem 0 1.4rem;
   display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.85rem;color:#b9c4b6}
 .footer-bottom a{color:#dfe7dd}
