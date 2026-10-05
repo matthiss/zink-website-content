@@ -63,6 +63,9 @@ h3{font-size:1.15rem;font-weight:700}
   box-shadow:0 8px 24px rgba(0,0,0,.35);white-space:nowrap;
   text-shadow:0 1px 3px rgba(0,0,0,.6)}
 .btn-glass:hover{background:rgba(20,32,23,.7);border-color:#fff;transform:translateY(-1px);color:#fff}
+/* Header-Anrufen: gleiche Farbe wie Akzente (Kicker-Gelb); nur color, Rest (BG/Border/Blur) unverändert */
+.btn-glass.header-cta,.header-phone{color:var(--amber)}
+.btn-glass.header-cta:hover{color:var(--amber)}
 .hero-cta .btn{padding:.85rem 1.6rem;font-size:1.02rem}
 .btn:active{transform:translateY(0)}
 /* Einheitlicher sichtbarer Fokus (Tastatur, WCAG 2.4.7) */
