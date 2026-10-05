@@ -220,8 +220,12 @@ a.photo-card .photo-body p{color:#eef3ec}
 .photo-band .kicker{color:var(--amber);text-shadow:0 1px 6px rgba(0,0,0,.7)}
 .photo-band .contact-card{background:rgba(21,42,27,.55);border:var(--glass-brd);
   backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
-.photo-band .map-facade{background:rgba(255,255,255,.78);border:var(--glass-brd);
-  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:var(--ink)}
+.photo-band .map-facade{background:rgba(21,42,27,.55);border:var(--glass-brd);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:#eef3ec;
+  box-shadow:0 12px 32px rgba(0,0,0,.3);padding:1.8rem}
+.photo-band .map-facade a{color:var(--amber)}
+.photo-band .map-facade a:hover{color:#fff}
+.photo-band .map-facade p{text-shadow:0 1px 6px rgba(0,0,0,.6)}
 /* Rubrik-Sections: weiße Text-Cards werden Glas-Cards (dunkel für Service-Rows, milchig für USP-Cards) */
 .photo-band .service-row{background:rgba(21,42,27,.55);border:var(--glass-brd);
   backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
