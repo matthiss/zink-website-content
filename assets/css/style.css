@@ -125,7 +125,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
 .hero-cta{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.4rem}
 .hero-cta .btn-ghost{background:rgba(255,255,255,.1);border-color:#fff;color:#fff}
 .hero-cta .btn-ghost:hover{background:rgba(255,255,255,.22)}
-/* Organischer Wave-Divider am Hero-Ende (SVG, Farbe = Seitenhintergrund) */
+/* Wald-Silhouette am Hero-Ende (SVG, Farbe = Seitenhintergrund) */
 .hero-wave{position:absolute;left:0;right:0;bottom:-1px;line-height:0;pointer-events:none}
 .hero-wave svg{display:block;width:100%;height:clamp(44px,7vw,84px)}
 .hero-badges{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.6rem;list-style:none;padding:0}
@@ -325,7 +325,7 @@ dialog#lightbox img{border-radius:12px 12px 0 0;max-height:76vh;max-width:100%;w
 .map-address{font-size:1.15rem;margin:.4rem 0 1rem}
 .map-frame{width:100%;height:380px;border:0;border-radius:12px}
 .map-links{margin-top:1rem;font-size:.92rem}
-/* footer full-bleed with wave top (v1.2.1: keine weissen Streifen, Wellenkante wie hero-wave) */
+/* footer full-bleed mit Wald-Silhouette oben (keine weissen Streifen, Kante wie hero-wave) */
 html{background:var(--green-950)}
 footer{background:var(--green-950);color:#dfe7dd;margin:0;border-radius:0;margin-bottom:0}
 .footer-wave{line-height:0;background:var(--stone-50);margin:2rem 0 -1px;pointer-events:none}
