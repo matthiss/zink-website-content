@@ -154,6 +154,12 @@ section{padding:clamp(2.5rem,6vw,4.5rem) 0}
   color:var(--amber);text-shadow:0 1px 3px rgba(0,0,0,.6)}
 .card-more:hover{text-decoration:underline;text-underline-offset:3px}
 .card-more::after{content:"";position:absolute;inset:0;border-radius:inherit}
+/* Warum-Zink (#warum.usp): 4 Cards gleiche Höhe, gelbe Links unten bündig.
+   Scope bewusst eng – keine anderen .card/.photo-card anfassen. */
+#warum .grid{align-items:stretch}
+#warum .card{display:flex;flex-direction:column;min-height:100%}
+#warum .card p{flex-grow:1}
+#warum .card .card-more,#warum .card .more{margin-top:auto;padding-top:.8rem;align-self:flex-start}
 /* ---------- Foto-Cards: Bild füllt die Karte, Text als Overlay unten ---------- */
 .photo-grid{grid-template-columns:repeat(3,1fr)}
 .photo-card{position:relative;border-radius:var(--radius-lg);overflow:hidden;
