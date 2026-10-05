@@ -115,7 +115,8 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
     radial-gradient(60rem 30rem at 85% 10%,rgba(242,183,62,.12),transparent 60%),
     linear-gradient(90deg,rgba(10,20,13,.62) 0%,rgba(10,20,13,.45) 32%,rgba(10,20,13,.12) 55%,transparent 68%),
     linear-gradient(to top,rgba(10,20,13,.5),transparent 26%)}
-.hero-inner{position:relative;padding:clamp(3.5rem,9vw,6.5rem) 0;max-width:var(--max);margin:0 auto;
+/* z-index: liegt ueber der Trennlinie, damit Text und Badges nicht vom Wald zerschnitten werden */
+.hero-inner{position:relative;z-index:1;padding:clamp(3.5rem,9vw,6.5rem) 0;max-width:var(--max);margin:0 auto;
   padding-left:1.25rem;padding-right:1.25rem;width:100%}
 .hero .kicker{color:var(--amber)}
 .hero h1{color:#fff;max-width:16ch;text-shadow:0 2px 14px rgba(0,0,0,.75),0 1px 3px rgba(0,0,0,.85)}
@@ -137,7 +138,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
   -webkit-mask-size:100% 100%;mask-size:100% 100%}
 /* Hero: ueberlagert das Hero-Foto. Container bleibt durchsichtig, damit das Foto
    durch die transparente Maske scheint; die Waldsilhouette sticht in den Himmel. */
-.divider--hero{position:absolute;left:0;right:0;bottom:-1px}
+.divider--hero{position:absolute;left:0;right:0;bottom:-1px;z-index:0}
 /* Fusszeile: Container = Farbe der Section oben, Maske = Farbe des Footers unten. */
 .divider--footer{background:var(--stone-50);margin:2rem 0 -1px}
 .divider--footer::before{background-color:var(--green-950)}
