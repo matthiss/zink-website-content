@@ -42,6 +42,7 @@ h3{font-size:1.15rem;font-weight:700}
 .brand{display:flex;align-items:center;gap:.7rem;text-decoration:none;color:#fff}
 .brand-mark{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--green-900),var(--green-700));
   display:grid;place-items:center;color:#fff;font-weight:900;font-size:1.3rem;box-shadow:var(--shadow)}
+.brand-logo{height:40px;width:auto;border-radius:10px;display:block;background:transparent;box-shadow:var(--shadow)}
 .brand-name{font-weight:800;line-height:1.15;font-size:1.02rem;font-family:var(--font-display);letter-spacing:-.02em}
 .brand-name small{display:block;font-family:var(--font);font-weight:600;color:#c9d3c6;font-size:.75rem;letter-spacing:.06em}
 .main-nav{margin-left:auto;display:flex;gap:.15rem;align-items:center}
