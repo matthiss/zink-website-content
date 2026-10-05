@@ -8,8 +8,13 @@
   --stone-50:#faf8f2; --stone-100:#f3efe6; --stone-200:#e3dcc9; --stone-600:#5d574b;
   --ink:#20261e; --amber:#f2b73e; --amber-dark:#7a5107;
   --radius:20px; --radius-lg:22px;
-  --glass-brd:1px solid rgba(255,255,255,.45);
-  --glass-bg:rgba(255,255,255,.22);
+  /* Glas-Token (einmalig, Kompromiss .55/.25/12px): deckend genug für weißen
+     Text (AA), hell genug für Foto-Charakter. ALLE Content-Boxen + Captions
+     nutzen diese drei Vars. Chrome (Header/Badges/Buttons) bleibt bewusst
+     dunkler (eigene Werte unten) – kein Teil des Box-Systems. */
+  --glass-bg:rgba(21,42,27,.55);
+  --glass-brd:1px solid rgba(255,255,255,.25);
+  --glass-blur:12px;
   --shadow:0 10px 30px rgba(21,42,27,.14);
   --shadow-lg:0 24px 60px rgba(21,42,27,.28);
   --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
@@ -74,7 +79,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
 /* Utilities statt Inline-Styles */
 .narrow{max-width:760px}
 .text-center{text-align:center}
-.muted{color:#b9c4b6}
+
 .stack-cta{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.4rem}
 .mt-1{margin-top:1.2rem}.mt-2{margin-top:1.6rem}.mt-3{margin-top:2rem}
 .mx-auto{margin-left:auto;margin-right:auto}
@@ -132,36 +137,31 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
 .hero .hero-badges li a:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
 /* ---------- sections ---------- */
 section{padding:clamp(2.5rem,6vw,4.5rem) 0}
-.grid{display:grid;gap:1.2rem}
+/* Gleiche Höhen: Grid streckt Spalten, Cards füllen als Flex-Spalte (Link unten bündig).
+   Gilt für .grid-4 (Warum Zink), .photo-grid (Leistungen) und .gallery-Teaser.
+   Masonry (.masonry, display:block + columns) bewusst ausgenommen – Höhen variieren systembedingt. */
+.grid{display:grid;gap:1.2rem;align-items:stretch}
 .grid-4{grid-template-columns:repeat(4,1fr)}
-/* Einheitliches Box-System (grün-glas): ALLE Info-Boxen/Captions nutzen
-   rgba(21,42,27,.62) + blur(12px) + 1px rgba(255,255,255,.22).
-   Solo-Boxen: radius 18px; Bild-Card-Streifen unten: radius 0 0 18px 18px.
-   Titel #fff, Text #dfe7dd, Links/More amber #f2b73e, Text-Shadow für AA-Kontrast. */
-.card{background:rgba(21,42,27,.62);border:1px solid rgba(255,255,255,.22);border-radius:18px;
+/* Einheitliches Box-System (grün-glas): ALLE Content-Boxen + Captions nutzen
+   var(--glass-bg)/--glass-brd/--glass-blur (Token oben, einmalig).
+   Titel #fff, Text #dfe7dd, Links amber #f2b73e, Text-Shadow für AA-Kontrast.
+   Cards sind Flex-Spalten (min-height:100%): Absätze wachsen, Links stehen unten bündig. */
+.card{position:relative;background:var(--glass-bg);border:var(--glass-brd);border-radius:18px;
   padding:1.4rem;box-shadow:0 2px 10px rgba(21,42,27,.06);transition:transform .25s,box-shadow .25s;
-  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:#eef3ec}
+  backdrop-filter:blur(var(--glass-blur));-webkit-backdrop-filter:blur(var(--glass-blur));color:#eef3ec;
+  display:flex;flex-direction:column;min-height:100%}
 .card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
-.card .icon{font-size:1.7rem}
 .card h3{margin:.5rem 0 .35rem;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.6)}
-.card p{margin:.3rem 0 .8rem;color:#dfe7dd;font-size:.95rem;text-shadow:0 1px 3px rgba(0,0,0,.6)}
-.card .more{font-weight:750;text-decoration:none;display:inline-block;color:var(--amber);
-  text-shadow:0 1px 3px rgba(0,0,0,.6)}
-.card .more:hover{text-decoration:underline;text-underline-offset:3px}
-/* USP-Cards: ganzer Kartenbereich klickbar (Stretched-Link), Tastaturfokus bleibt sichtbar */
-.card{position:relative}
-.card-more{display:inline-block;margin-top:.5rem;font-weight:750;text-decoration:none;
-  color:var(--amber);text-shadow:0 1px 3px rgba(0,0,0,.6)}
+.card p{margin:.3rem 0 .8rem;color:#dfe7dd;font-size:.95rem;text-shadow:0 1px 3px rgba(0,0,0,.6);
+  flex-grow:1}
+/* Ganzer Kartenbereich klickbar (Stretched-Link), Tastaturfokus bleibt sichtbar */
+.card-more{display:inline-block;font-weight:750;text-decoration:none;color:var(--amber);
+  text-shadow:0 1px 3px rgba(0,0,0,.6);margin-top:auto;padding-top:.8rem;align-self:flex-start}
 .card-more:hover{text-decoration:underline;text-underline-offset:3px}
 .card-more::after{content:"";position:absolute;inset:0;border-radius:inherit}
-/* Warum-Zink (#warum.usp): 4 Cards gleiche Höhe, gelbe Links unten bündig.
-   Scope bewusst eng – keine anderen .card/.photo-card anfassen. */
-#warum .grid{align-items:stretch}
-#warum .card{display:flex;flex-direction:column;min-height:100%}
-#warum .card p{flex-grow:1}
-#warum .card .card-more,#warum .card .more{margin-top:auto;padding-top:.8rem;align-self:flex-start}
 /* ---------- Foto-Cards: Bild füllt die Karte, Text als Overlay unten ---------- */
-.photo-grid{grid-template-columns:repeat(3,1fr)}
+/* Leistungs-Cards: Grid streckt alle 3 Karten auf gleiche Höhe (Foto + Overlay-Box) */
+.photo-grid{grid-template-columns:repeat(3,1fr);align-items:stretch}
 .photo-card{position:relative;border-radius:var(--radius-lg);overflow:hidden;
   min-height:460px;display:flex;align-items:flex-end;isolation:isolate;
   border:1px solid rgba(255,255,255,.18);box-shadow:var(--shadow-lg);
@@ -185,27 +185,20 @@ a.photo-card{text-decoration:none;color:inherit;cursor:pointer}
 a.photo-card:focus-visible{outline:3px solid var(--amber);outline-offset:3px;border-radius:var(--radius-lg)}
 a.photo-card .photo-body h3{color:#fff}
 a.photo-card .photo-body p{color:#eef3ec}
-.chip-glass{display:inline-block;background:var(--glass-bg);border:var(--glass-brd);
-  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
-  border-radius:999px;padding:.3rem .9rem;font-size:.78rem;font-weight:800;
-  letter-spacing:.05em;text-transform:uppercase;color:#fff}
-/* ---------- Start-Leistungen (id=leistungen): Fullscreen-Prinzip im Kontakt-Look ----------
-   Einheitliches Box-System (2026-10-05): .photo-body als grün-glas Solo-Box
-   (rgba(21,42,27,.62) + blur(12px)), Titel weiß, Text #dfe7dd, More amber.
-   Karten-Prominenz (Motive problemfaellung-feld, hubsteiger-02, bank-rustikal,
-   min-height) bleibt erhalten. */
+/* ---------- Start-Leistungen (id=leistungen): Overlay-Box im Einheits-Glas ----------
+   .photo-body erbt Farben/Shadows von .photo-body unten, hier nur Größe + Layout:
+   Flex-Spalte (Text wächst, „Mehr erfahren" unten bündig). */
 #leistungen .photo-grid{gap:1.8rem}
 #leistungen .photo-card{min-height:520px;align-items:stretch}
 #leistungen .photo-card>img{filter:blur(1px) brightness(.92);object-position:top center}
 #leistungen .photo-body{margin:1.2rem;margin-top:auto;align-self:end;width:auto;
-  max-height:46%;overflow:hidden;
-  background:rgba(21,42,27,.62);border:1px solid rgba(255,255,255,.22);
-  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  max-height:46%;overflow:hidden;display:flex;flex-direction:column;
+  background:var(--glass-bg);border:var(--glass-brd);
+  backdrop-filter:blur(var(--glass-blur));-webkit-backdrop-filter:blur(var(--glass-blur));
   border-radius:18px;padding:1.2rem;box-shadow:0 12px 32px rgba(0,0,0,.35);color:#eef3ec}
-#leistungen .photo-body h3{color:#fff;font-size:1.2rem;text-shadow:0 1px 3px rgba(0,0,0,.6)}
-#leistungen .photo-body p{color:#dfe7dd;font-size:.95rem;text-shadow:0 1px 3px rgba(0,0,0,.6)}
-#leistungen .photo-body .more{color:var(--amber);text-shadow:0 1px 3px rgba(0,0,0,.6)}
-#leistungen .chip-glass{background:rgba(21,42,27,.6);border-color:rgba(255,255,255,.5);color:#fff}
+#leistungen .photo-body h3{font-size:1.2rem}
+#leistungen .photo-body p{font-size:.95rem;flex-grow:1}
+#leistungen .photo-body .more{margin-top:auto;padding-top:.6rem}
 @media(max-width:900px){
   .hero-bg img{object-position:right center}
   #leistungen .photo-card{min-height:420px}
@@ -214,9 +207,9 @@ a.photo-card .photo-body p{color:#eef3ec}
 /* ---------- Foto-Band: Section mit Bildhintergrund + Glas-Cards (Kontakt-Look, Maßstab) ----------
    Einheitliches Box-System, Referenz kontakt.html .photo-band:
    - band-bg img: cover, blur(4px) + brightness(.9), scale(1.06) gegen Blur-Ränder
-   - ::after: dunkler Verlauf 105deg rgba(21,42,27,.9)/.55/.3 (Textseite → Bildseite)
-   - Glas-Boxen: rgba(21,42,27,.62) + blur(12px) + 1px rgba(255,255,255,.22);
-     Kontakt (.contact-card/.map-facade) bleibt Referenz dunkel (.55) unverändert.
+   - ::after: dunkler Verlauf 105deg rgba(21,42,27,.9)/.55/.3 (Textseite → Bildseite,
+     reiner Overlay-Verlauf, kein Box-Glas – bleibt hardcoded)
+   - Glas-Boxen: var(--glass-bg)/--glass-brd/--glass-blur (Token oben, einmalig).
    Heller Text + Shadows für Lesbarkeit. Alle Rubrik-Sections nutzen dieses System. */
 .photo-band{position:relative;isolation:isolate;color:#fff;overflow:hidden;border-radius:28px;margin:0 .6rem}
 .photo-band .band-bg{position:absolute;inset:0;z-index:-2}
@@ -227,17 +220,17 @@ a.photo-card .photo-body p{color:#eef3ec}
 .photo-band h1,.photo-band h2{color:#fff;text-shadow:0 2px 14px rgba(0,0,0,.75),0 1px 3px rgba(0,0,0,.85)}
 .photo-band .lead{color:#eef3ec;text-shadow:0 1px 10px rgba(0,0,0,.7)}
 .photo-band .kicker{color:var(--amber);text-shadow:0 1px 6px rgba(0,0,0,.7)}
-.photo-band .contact-card{background:rgba(21,42,27,.55);border:var(--glass-brd);
-  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
-.photo-band .map-facade{background:rgba(21,42,27,.55);border:var(--glass-brd);
-  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:#eef3ec;
+.photo-band .contact-card{background:var(--glass-bg);border:var(--glass-brd);
+  backdrop-filter:blur(var(--glass-blur));-webkit-backdrop-filter:blur(var(--glass-blur))}
+.photo-band .map-facade{background:var(--glass-bg);border:var(--glass-brd);
+  backdrop-filter:blur(var(--glass-blur));-webkit-backdrop-filter:blur(var(--glass-blur));color:#eef3ec;
   box-shadow:0 12px 32px rgba(0,0,0,.3);padding:1.8rem}
 .photo-band .map-facade a{color:var(--amber)}
 .photo-band .map-facade a:hover{color:#fff}
 .photo-band .map-facade p{text-shadow:0 1px 6px rgba(0,0,0,.6)}
 /* Rubrik-Sections: Text-Cards als Glas-Boxen im Einheits-System (grün-glas) */
-.photo-band .service-row{background:rgba(21,42,27,.62);border:1px solid rgba(255,255,255,.22);
-  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+.photo-band .service-row{background:var(--glass-bg);border:var(--glass-brd);
+  backdrop-filter:blur(var(--glass-blur));-webkit-backdrop-filter:blur(var(--glass-blur));
   box-shadow:0 12px 32px rgba(0,0,0,.3);color:#eef3ec}
 .photo-band .service-row h2{color:#fff}
 .photo-band .service-row p{color:#eef3ec;text-shadow:0 1px 6px rgba(0,0,0,.6)}
@@ -245,11 +238,7 @@ a.photo-card .photo-body p{color:#eef3ec}
 .photo-band .checklist li{color:#eef3ec;text-shadow:0 1px 6px rgba(0,0,0,.6)}
 .photo-band .tag{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.45);color:#fff}
 .photo-band .service-img{box-shadow:0 12px 32px rgba(0,0,0,.35)}
-.photo-band .card{background:rgba(21,42,27,.62);border:1px solid rgba(255,255,255,.22);
-  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:#eef3ec}
-.photo-band .card h3{color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.6)}
-.photo-band .card p{color:#dfe7dd;text-shadow:0 1px 3px rgba(0,0,0,.6)}
-.photo-band .card .more,.photo-band .card .card-more{color:var(--amber)}
+/* .photo-band .card erbt komplett von .card oben (identische Werte) – kein Override nötig */
 .photo-band .btn-ghost{background:rgba(255,255,255,.1);border-color:#fff;color:#fff}
 .photo-band .btn-ghost:hover{background:rgba(255,255,255,.22)}
 .photo-band + .photo-band{margin-top:1rem}
@@ -260,15 +249,13 @@ a.photo-card .photo-body p{color:#eef3ec}
 /* Galerie-Teaser auf der Startseite: 3–4 große Kacheln */
 .gallery-large{grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.1rem}
 .gallery-large img{height:260px}
-.usp-num{font-size:2rem;font-weight:900;color:var(--green-700);letter-spacing:0}
-@supports (-webkit-text-stroke:1px black){
-  .usp-num{color:var(--green-100);-webkit-text-stroke:1.5px var(--green-700)}
-}
-/* service list rows (Einheits-System grün-glas, auch ohne .photo-band) */
+/* service list rows (Einheits-Glas, auch ohne .photo-band).
+   align-items:center bleibt: gestapelte 2-Spalter (Bild/Text), kein paralleles
+   Raster – hier folgt die Höhe dem Inhalt, kein Stretch nötig. */
 .service-row{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center;
-  background:rgba(21,42,27,.62);border:1px solid rgba(255,255,255,.22);border-radius:18px;padding:1.6rem;
+  background:var(--glass-bg);border:var(--glass-brd);border-radius:18px;padding:1.6rem;
   margin-bottom:1.4rem;box-shadow:0 2px 10px rgba(21,42,27,.05);
-  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:#eef3ec}
+  backdrop-filter:blur(var(--glass-blur));-webkit-backdrop-filter:blur(var(--glass-blur));color:#eef3ec}
 .service-row h2{color:#fff;text-shadow:0 2px 14px rgba(0,0,0,.75),0 1px 3px rgba(0,0,0,.85)}
 .service-row p{color:#eef3ec;text-shadow:0 1px 6px rgba(0,0,0,.6)}
 .service-row .more{color:var(--amber)}
@@ -278,21 +265,23 @@ a.photo-card .photo-body p{color:#eef3ec}
 .service-img{overflow:hidden;border-radius:18px}
 .service-img img{width:100%;height:100%;aspect-ratio:16/10;object-fit:cover;border-radius:0}
 /* Service-Bilder ohne weiße Border-Linie (Radius + Shadow bleiben) */
-.service-row img,.service-media img{border:none}
+.service-row img{border:none}
 .service-row .before-after .ba-item,.service-row .before-after--animated{border:none}
 /* gallery */
-.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.1rem}
+/* Galerie-Teaser (.gallery-large): Grid streckt alle Kacheln auf gleiche Höhe.
+   Masonry-Varianten (.gallery.masonry) sind Spalten-Layout (display:block) – ausgenommen. */
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.1rem;align-items:stretch}
 .gallery figure{margin:0;position:relative;overflow:hidden;border-radius:18px;cursor:zoom-in;
-  border:1px solid rgba(255,255,255,.22);background:rgba(21,42,27,.62)}
+  border:var(--glass-brd);background:var(--glass-bg)}
 .gallery figure:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
 .gallery img{border-radius:0;height:260px;width:100%;object-fit:cover;transition:transform .35s}
 .gallery figure:hover img{transform:scale(1.05)}
-/* Galerie-Captions: dezent einzeilig, halbe Breite zentriert (nowrap + max-content) */
-.gallery figcaption,.masonry figure figcaption,.ba-caption{position:absolute;left:50%;transform:translateX(-50%);bottom:12px;
+/* Galerie-Captions: einzeilig, zentriert (nowrap + max-content), gleiches Glas wie Boxen */
+.gallery figcaption,.masonry figure figcaption{position:absolute;left:50%;transform:translateX(-50%);bottom:12px;
   width:max-content;max-width:calc(100% - 24px);
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:center;
-  background:rgba(21,42,27,.45);border:1px solid rgba(255,255,255,.22);
-  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  background:var(--glass-bg);border:var(--glass-brd);
+  backdrop-filter:blur(var(--glass-blur));-webkit-backdrop-filter:blur(var(--glass-blur));
   padding:.45rem .9rem;font-size:.85rem;font-weight:650;color:#fff;
   border-radius:14px;text-shadow:0 1px 3px rgba(0,0,0,.6)}
 /* Galerie-Sprunglinks im Intro (dunkles Band: heller Text + Amber-Links) */
@@ -301,8 +290,9 @@ a.photo-card .photo-body p{color:#eef3ec}
 /* ---------- Vorher-Nachher: Baumpflege-Fortschritt, gleicher Einsatz ---------- */
 .before-after{margin:0}
 .before-after .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+/* Ba-Rahmen: dunkles Image-Backing (#1a241c, kein Glas – verhindert Weiß-Blitz), Border im Einheits-Glas */
 .before-after .ba-item{position:relative;margin:0;overflow:hidden;border-radius:14px;
-  border:1px solid rgba(255,255,255,.22);background:#1a241c}
+  border:var(--glass-brd);background:#1a241c}
 .service-img.before-after .ba-item img,.before-after .ba-item img{width:100%;height:100%;
   aspect-ratio:1/1;object-fit:cover;border-radius:0}
 .before-after .ba-during{object-position:50% 18%}
@@ -316,18 +306,13 @@ a.photo-card .photo-body p{color:#eef3ec}
 .before-after--animated .ba-item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;aspect-ratio:auto;border-radius:0}
 .before-after--animated .ba-item:last-child img{animation:baFade 7s ease-in-out infinite}
 @keyframes baFade{0%,42%{opacity:1}50%,92%{opacity:0}100%{opacity:1}}
-.gallery .before-after--animated figcaption{position:absolute;left:50%;transform:translateX(-50%);bottom:12px;z-index:2;
-  width:max-content;max-width:calc(100% - 24px);
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:center;
-  background:rgba(21,42,27,.45);border:1px solid rgba(255,255,255,.22);
-  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-  border-radius:14px;padding:.45rem .9rem;font-size:.85rem;font-weight:650;
-  color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.6)}
+/* Crossfade-Kacheln erben den Caption-Look oben – nur Staplung übers Bild nötig */
+.gallery .before-after--animated figcaption{z-index:2}
 .gallery .before-after--animated .ba-grid{height:100%}
 @media (prefers-reduced-motion:reduce){
   .before-after--animated .ba-grid{grid-template-columns:1fr 1fr;aspect-ratio:auto;
     overflow:visible;border:none;background:none}
-  .before-after--animated .ba-item{border:1px solid rgba(255,255,255,.22);border-radius:14px;
+  .before-after--animated .ba-item{border:var(--glass-brd);border-radius:14px;
     overflow:hidden;background:#1a241c}
   .before-after--animated .ba-item img{position:static;aspect-ratio:1/1}
   .before-after--animated .ba-item:last-child img{animation:none}
@@ -366,14 +351,12 @@ dialog#lightbox img{border-radius:12px 12px 0 0;max-height:76vh;max-width:100%;w
 .map-links{margin-top:1rem;font-size:.92rem}
 /* footer */
 footer{background:var(--green-950);color:#dfe7dd;margin-top:2rem;border-radius:28px 28px 0 0}
-.footer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;padding:2.8rem 0 1rem}
+.footer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;padding:2.8rem 0 1rem}
 footer h3{color:#fff;font-size:1rem;text-transform:uppercase;letter-spacing:.1em}
 footer a{color:#dfe7dd}
 footer ul{list-style:none;padding:0;margin:0}
 footer li{margin:.3rem 0}
-footer .slogan{margin-top:.6rem;color:#b9c4b6}
 .footer-logo{height:96px;width:auto;max-width:100%;display:block;background:transparent;border-radius:6px}
-.footer-grid{grid-template-columns:repeat(4,1fr)}
 .footer-brand .footer-logo{margin-bottom:.5rem}
 .brand-note{display:block;font-size:.8rem;color:#b9c4b9;line-height:1.5}
 .partner-list{display:flex;flex-direction:column;gap:.7rem}
