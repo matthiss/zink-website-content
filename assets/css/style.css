@@ -127,7 +127,7 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
 .hero-cta .btn-ghost:hover{background:rgba(255,255,255,.22)}
 /* Wald-Silhouette am Hero-Ende (SVG, Farbe = Seitenhintergrund) */
 .hero-wave{position:absolute;left:0;right:0;bottom:-1px;line-height:0;pointer-events:none}
-.hero-wave svg{display:block;width:100%;height:clamp(44px,7vw,84px)}
+.hero-wave svg{display:block;width:100%;height:clamp(72px,11vw,130px)}
 .hero-badges{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.6rem;list-style:none;padding:0}
 .hero .hero-badges li{background:rgba(20,32,23,.72);border:1px solid rgba(255,255,255,.35);
   border-radius:999px;padding:0;font-size:.85rem;font-weight:600;color:#fff;
@@ -329,7 +329,7 @@ dialog#lightbox img{border-radius:12px 12px 0 0;max-height:76vh;max-width:100%;w
 html{background:var(--green-950)}
 footer{background:var(--green-950);color:#dfe7dd;margin:0;border-radius:0;margin-bottom:0}
 .footer-wave{line-height:0;background:var(--stone-50);margin:2rem 0 -1px;pointer-events:none}
-.footer-wave svg{display:block;width:100%;height:clamp(44px,7vw,84px)}
+.footer-wave svg{display:block;width:100%;height:clamp(72px,11vw,130px)}
 main>section:last-child{margin-bottom:0}
 .footer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;padding:2.8rem 0 1rem}
 footer h3{color:#fff;font-size:1rem;text-transform:uppercase;letter-spacing:.1em}
