@@ -355,7 +355,7 @@ footer li{margin:.3rem 0}
 @media(max-width:900px){
   html{scroll-padding-top:132px}
   [id]{scroll-margin-top:calc(var(--header-h) + 64px)}
-  .hero-bg img{object-position:right center}
+  .hero-bg img{object-position:left center}
   #leistungen .photo-card{min-height:var(--card-h-leistungen-mobil)}
   #leistungen .photo-body{margin:.9rem;padding:1.2rem;max-height:none;min-height:auto}
   .grid-4{grid-template-columns:repeat(2,1fr)}
