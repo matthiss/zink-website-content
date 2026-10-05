@@ -125,9 +125,22 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
 .hero-cta{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.4rem}
 .hero-cta .btn-ghost{background:rgba(255,255,255,.1);border-color:#fff;color:#fff}
 .hero-cta .btn-ghost:hover{background:rgba(255,255,255,.22)}
-/* Wald-Silhouette am Hero-Ende (SVG, Farbe = Seitenhintergrund) */
-.hero-wave{position:absolute;left:0;right:0;bottom:-1px;line-height:0;pointer-events:none}
-.hero-wave svg{display:block;width:100%;height:clamp(72px,11vw,130px)}
+/* ---------- Trennlinie: eine Alphamap, zwei Farbrichtungen ----------
+   assets/img/divider-alpha.png (1408x415) traegt nur Alpha: Tinte opak, Papier transparent.
+   Farbregel fuer nahtlose Kanten: ::before malt die Farbe des Bereichs UNTEN, der Container
+   die Farbe des Bereichs OBEN. Dieselbe Maske traegt so Hero (hell) und Fusszeile (dunkel). */
+.divider{position:relative;width:100%;line-height:0;pointer-events:none}
+.divider::before{content:"";display:block;width:100%;height:clamp(80px,16.5vw,240px);
+  background-color:var(--stone-50);
+  -webkit-mask-image:url(../img/divider-alpha.png);mask-image:url(../img/divider-alpha.png);
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-size:100% 100%;mask-size:100% 100%}
+/* Hero: ueberlagert das Hero-Foto. Container bleibt durchsichtig, damit das Foto
+   durch die transparente Maske scheint; die Waldsilhouette sticht in den Himmel. */
+.divider--hero{position:absolute;left:0;right:0;bottom:-1px}
+/* Fusszeile: Container = Farbe der Section oben, Maske = Farbe des Footers unten. */
+.divider--footer{background:var(--stone-50);margin:2rem 0 -1px}
+.divider--footer::before{background-color:var(--green-950)}
 .hero-badges{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.6rem;list-style:none;padding:0}
 .hero .hero-badges li{background:rgba(20,32,23,.72);border:1px solid rgba(255,255,255,.35);
   border-radius:999px;padding:0;font-size:.85rem;font-weight:600;color:#fff;
@@ -325,11 +338,9 @@ dialog#lightbox img{border-radius:12px 12px 0 0;max-height:76vh;max-width:100%;w
 .map-address{font-size:1.15rem;margin:.4rem 0 1rem}
 .map-frame{width:100%;height:380px;border:0;border-radius:12px}
 .map-links{margin-top:1rem;font-size:.92rem}
-/* footer full-bleed mit Wald-Silhouette oben (keine weissen Streifen, Kante wie hero-wave) */
+/* footer full-bleed dunkel, Trennlinie darüber (keine weissen Streifen) */
 html{background:var(--green-950)}
 footer{background:var(--green-950);color:#dfe7dd;margin:0;border-radius:0;margin-bottom:0}
-.footer-wave{line-height:0;background:var(--stone-50);margin:2rem 0 -1px;pointer-events:none}
-.footer-wave svg{display:block;width:100%;height:clamp(72px,11vw,130px)}
 main>section:last-child{margin-bottom:0}
 .footer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;padding:2.8rem 0 1rem}
 footer h3{color:#fff;font-size:1rem;text-transform:uppercase;letter-spacing:.1em}
@@ -379,5 +390,5 @@ footer li{margin:.3rem 0}
     justify-content:center;padding:.95rem;font-size:1.05rem}
   body{padding-bottom:0}
   footer{padding-bottom:3.2rem}
-  .footer-wave{margin-top:1.2rem}
+  .divider--footer{margin-top:1.2rem}
 }
