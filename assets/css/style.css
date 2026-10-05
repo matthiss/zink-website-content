@@ -122,8 +122,10 @@ a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
 .hero-wave{position:absolute;left:0;right:0;bottom:-1px;line-height:0;pointer-events:none}
 .hero-wave svg{display:block;width:100%;height:clamp(44px,7vw,84px)}
 .hero-badges{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1.6rem;list-style:none;padding:0}
-.hero-badges li{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);
-  border-radius:999px;padding:.35rem .9rem;font-size:.85rem;font-weight:650}
+.hero .hero-badges li{background:rgba(20,32,23,.72);border:1px solid rgba(255,255,255,.35);
+  border-radius:999px;padding:.35rem .9rem;font-size:.85rem;font-weight:600;color:#fff;
+  text-shadow:0 1px 3px rgba(0,0,0,.7);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
 /* ---------- sections ---------- */
 section{padding:clamp(2.5rem,6vw,4.5rem) 0}
 .section-stone{background:var(--stone-100);border-radius:28px;margin:0 .6rem}
