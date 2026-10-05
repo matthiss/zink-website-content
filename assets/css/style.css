@@ -334,6 +334,11 @@ footer ul{list-style:none;padding:0;margin:0}
 footer li{margin:.3rem 0}
 footer .slogan{margin-top:.6rem;color:#b9c4b6}
 .footer-logo{height:96px;width:auto;max-width:100%;display:block;background:transparent;border-radius:6px}
+.footer-grid{grid-template-columns:repeat(4,1fr)}
+.footer-brand .footer-logo{margin-bottom:.5rem}
+.brand-note{display:block;font-size:.8rem;color:#b9c4b9;line-height:1.5}
+.partner-list{display:flex;flex-direction:column;gap:.7rem}
+.partner-list .footer-logo{width:100%;max-width:220px;object-fit:contain}
 .footer-bottom{border-top:1px solid rgba(255,255,255,.15);padding:1rem 0 1.4rem;
   display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.85rem;color:#b9c4b6}
 .footer-bottom a{color:#dfe7dd}
